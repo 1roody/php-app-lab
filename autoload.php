@@ -11,7 +11,7 @@
 
     $models_files = scandir('./Models');
 
-    foreach($model_files as $file) {
+    foreach($models_files as $file) {
         if ($file == '.' || $file == '..') {
             continue;
         }

@@ -17,6 +17,6 @@ function login() {
       body: JSON.stringify(data),
     });
   } else {
-    alert("Preencha todos os campos");
+    alert("Write all the fields");
   }
 }
