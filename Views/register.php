@@ -14,6 +14,6 @@
         <button id="login_button">Register</button>
     </div>
 
-    <script src="Assets/main.js"></script>
+    <script src="/Assets/register.js"></script>
 </body>
 </html>

@@ -16,7 +16,18 @@ switch($route) {
 
     case '/login':
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            echo "make the login here";
+            $request = file_get_contents('php://input');
+            $data_object = json_decode($request);
+
+            $auth = new AuthController();
+            $result = $auth->login($data_object->username, $data_object->password);
+
+            if($result) {
+                echo "you're now logged in";
+            } else {
+                echo "failed to loggin, try again";
+            }
+
         } else {
             $controller = new ViewController();
             $controller->render('login');

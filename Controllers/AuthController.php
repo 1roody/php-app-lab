@@ -6,7 +6,11 @@ class AuthController {
     public $user_id;
     
     public function login($username, $password) {
-        return "login screen";
+        if($username == "admin" && $password = '1234') {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function register($username, $password) {

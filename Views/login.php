@@ -9,11 +9,11 @@
 <body>
     <div id="login_form">
         <h1>Login</h1>
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <button id="login_button">Login</button>
+        <input id="username" type="text" placeholder="Username">
+        <input id="password" type="password" placeholder="Password">
+        <button type="button" id="login_button" onclick="login()">Login</button>
     </div>
 
-    <script src="Assets/main.js"></script>
+    <script src="/Assets/login.js"></script>
 </body>
 </html>
