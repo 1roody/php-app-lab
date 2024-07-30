@@ -9,9 +9,15 @@
 <body>
     <div id="login_form">
         <h1>Login</h1>
+        <?php
+            if($_GET['msg']) {
+                echo $_GET['msg'];
+            };
+        ?>
         <input id="username" type="text" placeholder="Username">
         <input id="password" type="password" placeholder="Password">
         <button type="button" id="login_button" onclick="login()">Login</button>
+        <button type="button" id="register_button"><a href="/register">Register your account</a></button>
     </div>
 
     <script src="/Assets/login.js"></script>

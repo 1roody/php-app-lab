@@ -23,6 +23,12 @@ class User {
         
     }
 
+    public function register($username, $password) {
+        $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+        $result = $this->connection->query($sql);
+        return $result;
+    }
+
     public function getUserByUsername($username) {
         $sql = "SELECT * FROM users WHERE username = '$username'";
         $result = $this->connection->query($sql);

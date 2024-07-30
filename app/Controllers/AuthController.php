@@ -12,9 +12,9 @@ class AuthController {
        
        if($user) {
         if($user['password'] == $password) {
-            $this->is_auth = true;
-            $this->username = $user['username'];
-            $this->user_id = $user['id'];
+            $_SESSION['is_auth'] = true;
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['user_id'] = $user['id'];
             
             return true;
         }
@@ -24,10 +24,12 @@ class AuthController {
     }
 
     public function register($username, $password) {
-        return "register screen";
+        $userModel = new User();
+        $result = $userModel->register($username, $password);
+        return $result;
     }
 
     public function checkAuth() {
-        return $this->is_auth;
+        return $_SESSION['is_auth'];
     }
 }

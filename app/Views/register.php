@@ -9,9 +9,10 @@
 <body>
     <div id="login_form">
         <h1>Register</h1>
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <button id="login_button">Register</button>
+        <input id="username" type="text" placeholder="Username">
+        <input id="password" type="password" placeholder="Password">
+        <button type="button" id="login_button" onclick="register()">Create account</button>
+        <button type="button" id="alreadyRegistered_button"><a href="/login">already registered?</a></button>
     </div>
 
     <script src="/Assets/register.js"></script>

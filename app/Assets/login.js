@@ -15,7 +15,20 @@ function login() {
         Accept: "application/json",
       },
       body: JSON.stringify(data),
-    });
+    })
+      .then((data) => {
+        return data.json();
+      })
+      .then((data) => {
+        if (data.sucess) {
+          document.location = "/";
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch(() => {
+        alert("Oh no, something is going wrong! Contact the support.");
+      });
   } else {
     alert("Write all the fields");
   }

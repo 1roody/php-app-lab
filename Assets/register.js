@@ -1,1 +1,0 @@
-alert("tela de registro");
