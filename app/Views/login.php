@@ -10,9 +10,9 @@
     <div id="login_form">
         <h1>Login</h1>
         <?php
-            if($_GET['msg']) {
+            if(isset($_GET['msg'])) {
                 echo $_GET['msg'];
-            };
+            }
         ?>
         <input id="username" type="text" placeholder="Username">
         <input id="password" type="password" placeholder="Password">

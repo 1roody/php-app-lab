@@ -7,7 +7,7 @@ class User {
     public $connection;
 
     public function __construct() {
-        $this->connection = new mysqli('localhost', 'vulnuser', 'senha@123', 'vulnapp');
+        $this->connection = new mysqli('mysql', 'vulnuser', 'senha@123', 'vulnapp');
     }
 
     public function getAll() {

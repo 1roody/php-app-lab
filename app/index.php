@@ -1,6 +1,4 @@
- <?php
-
-session_start();
+<?php session_start();
 
 require_once 'autoload.php';
 
@@ -61,4 +59,4 @@ switch($route) {
     default:
         echo "Page was not found";
         break;  
-}
+}?>
