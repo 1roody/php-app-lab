@@ -1,16 +1,25 @@
-# => Sistema de autenticação
+# PHP Vulnerable Auth System
 
-# => API REST
+Welcome to this completely ridiculous aplication! This application is intentionally vulnerable and designed for educational and penetration testing purposes. Feel free to explore, test, and review the code.
 
-# => Controllers
+### Prerequisites
 
-    -> Authentication
-    -> Views
+Before you begin, ensure you have the following installed on your machine:
 
-# => Models
+- Docker
+- Docker Compose
 
-# => Views
+### How to Run
 
-    -> Login
-    -> Register
-# vulnerable-php-app-lab
+To get the application up and running, follow these steps:
+
+1. Open your terminal.
+2. Run the following command:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+3. Access the application by navigating to [http://localhost:8000](http://localhost:8000) in your web browser.
+
+Enjoy!!

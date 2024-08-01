@@ -1,0 +1,21 @@
+services:
+  app:
+    build: ./app
+    ports:
+      - "8000:80"
+    links:
+      - mysql
+
+  mysql:
+    build: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "vulnapp"
+      MYSQL_USER: "vulnuser"
+      MYSQL_PASSWORD: "senha@123"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./mysql/vulnapp.sql:/docker-entrypoint-initdb.d/vulnapp.sql
+    ports:
+      - "3306:3306"
+    restart: always

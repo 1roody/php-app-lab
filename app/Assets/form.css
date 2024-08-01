@@ -25,7 +25,7 @@ input[type="password"] {
   border-radius: 4px;
   font-size: 16px;
 }
-button {
+#login_button {
   background-color: #007bff;
   color: white;
   border: none;
@@ -34,6 +34,20 @@ button {
   font-size: 16px;
   cursor: pointer;
 }
-button:hover {
+#login_button:hover {
   background-color: #0056b3;
+}
+
+#register_button {
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#alreadyRegistered_button {
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
 }
