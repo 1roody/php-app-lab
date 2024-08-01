@@ -1,6 +1,6 @@
-# PHP Vulnerable Auth System
+# PHP Vxln3r4bl3 Auth System
 
-Welcome to this completely ridiculous aplication! This application is intentionally vulnerable and designed for educational and penetration testing purposes. Feel free to explore, test, and review the code.
+Welcome to this completely ridiculous aplication! This application is intentionally vuln3r4bl3 and designed for educational and p3n3trati0n t3sting purposes. Feel free to explore, test, and review the code.
 
 ### Prerequisites
 
