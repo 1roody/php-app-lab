@@ -29,7 +29,7 @@ jobs:
 
       - name: Run Semgrep Security Scan
         env:
-          SEMGREP_SEND_METRICS: "off"
+          # SEMGREP_SEND_METRICS: "off"
           SEMGREP_NO_SERVER: "1"
         run: |
           semgrep --config ./rules/ --error
