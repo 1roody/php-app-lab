@@ -17,14 +17,12 @@ jobs:
 
     if: github.actor != 'dependabot[bot]'
     steps:
-      - name: Set environment variables
-        env:
-          SEMGREP_ENABLE_VERSION_CHECK: false
-          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
-
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Run Semgrep
+        env:
+          SEMGREP_ENABLE_VERSION_CHECK: false
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
         run: |
           semgrep ci
