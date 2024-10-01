@@ -9,6 +9,10 @@ on:
       - main
       - development
 
+env:
+  SEMGREP_ENABLE_VERSION_CHECK: false
+  SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+
 jobs:
   semgrep:
     name: Semgrep/ci Security Checks
@@ -17,8 +21,5 @@ jobs:
 
     if: (github.actor != 'dependabot[bot]')
     steps:
-        env:
-          SEMGREP_ENABLE_VERSION_CHECK: false
-          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
       - uses: actions/checkout@v4
       - run: semgrep ci
