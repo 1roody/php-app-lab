@@ -11,32 +11,15 @@ on:
 
 jobs:
   semgrep:
-    name: Run Semgrep Security Checks
+    name: Semgrep/ci Security Checks
     runs-on: ubuntu-latest
+    container: semgrep/semgrep
 
+    if: (github.actor != 'dependabot[bot]')
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.x"
-
-      - name: Install Semgrep
-        run: |
-          pip install semgrep
-
-      - name: Run Semgrep Security Scan
+      - uses: actions/checkout@v4
+      - run: semgrep scan --config="auto"
         env:
-          # SEMGREP_SEND_METRICS: "off"
-          SEMGREP_NO_SERVER: "1"
-        run: |
-          semgrep --config ./rules/ --error
-
-      - name: Upload Semgrep report
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: semgrep-report
-          path: semgrep.sarif
+          SEMGREP_SEND_METRICS: "off"
+          SEMGREP_ENABLE_VERSION_CHECK: false
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
