@@ -28,8 +28,11 @@ jobs:
           pip install semgrep
 
       - name: Run Semgrep Security Scan
+       env:
+          SEMGREP_SEND_METRICS: 'off'  # Disables telemetry
+          SEMGREP_NO_SERVER: '1'       # Disables Semgrep Cloud
         run: |
-          semgrep scan -c auto --output semgrep-log.txt
+          semgrep scan -c auto
 
       - name: Upload Semgrep report
         if: failure()
