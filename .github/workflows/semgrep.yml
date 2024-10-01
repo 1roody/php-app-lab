@@ -7,7 +7,6 @@ on:
       - master
     paths:
       - .github/workflows/semgrep.yml
-  schedule:
 
 jobs:
   semgrep:
