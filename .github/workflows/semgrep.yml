@@ -1,4 +1,4 @@
-name: Semgrep source-code security checks
+name: Semgrep Source Code Security Checks
 
 on:
   pull_request:
@@ -12,28 +12,28 @@ on:
 jobs:
   semgrep:
     name: Run Semgrep Security Checks
-    uses: actions/checkout@v3
     runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-  if: (github.action != 'dependabot[bot]')
-  steps:
-    name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
 
-    name: Install Semgrep
-      run: |
-        pip install semgrep
+      - name: Install Semgrep
+        run: |
+          pip install semgrep
 
-    name: Run Semgrep Security Scan
-      run: |
-        semgrep --config p/ci --strict
+      - name: Run Semgrep Security Scan
+        run: |
+          semgrep --config p/ci --strict
 
-    name: Upload Semgrep report
-      if: failure()
-      uses: actions/upload-artifact@v3
-      with:
-        name: semgrep-report
-        path: semgrep.sarif
+      - name: Upload Semgrep report
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: semgrep-report
+          path: semgrep.sarif
