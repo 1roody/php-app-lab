@@ -17,23 +17,23 @@ jobs:
 
 
   if: (github.action != 'dependabot[bot]')
-    steps:
-      name: Set up Python
-          uses: actions/setup-python@v4
-          with:
-            python-version: '3.x'
-
-      name: Install Semgrep
-        run: |
-          pip install semgrep
-
-      name: Run Semgrep Security Scan
-        run: |
-          semgrep --config p/ci --strict
-
-      name: Upload Semgrep report
-        if: failure()
-        uses: actions/upload-artifact@v3
+  steps:
+    name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          name: semgrep-report
-          path: semgrep.sarif
+          python-version: '3.x'
+
+    name: Install Semgrep
+      run: |
+        pip install semgrep
+
+    name: Run Semgrep Security Scan
+      run: |
+        semgrep --config p/ci --strict
+
+    name: Upload Semgrep report
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: semgrep-report
+        path: semgrep.sarif
