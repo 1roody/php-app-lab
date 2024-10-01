@@ -32,7 +32,7 @@ jobs:
           SEMGREP_SEND_METRICS: "off"
           SEMGREP_NO_SERVER: "1"
         run: |
-          semgrep scan -c auto
+          semgrep --config ./rules/ --error
 
       - name: Upload Semgrep report
         if: failure()
