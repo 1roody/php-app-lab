@@ -20,8 +20,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run Semgrep
+      - name: Example step
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+        run: echo "Using SEMGREP_APP_TOKEN"
+
+      - name: Run Semgrep
         run: |
           semgrep ci
