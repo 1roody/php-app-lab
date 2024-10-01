@@ -20,6 +20,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Semgrep login
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+        run: |
+          semgrep login --token $SEMGREP_APP_TOKEN
+
       - name: Run Semgrep
         env:
           SEMGREP_ENABLE_VERSION_CHECK: false
