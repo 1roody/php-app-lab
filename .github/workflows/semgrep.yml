@@ -1,0 +1,39 @@
+name: Semgrep Source Code Security Checks
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+      - development
+
+jobs:
+  semgrep:
+    name: Run Semgrep Security Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install Semgrep
+        run: |
+          pip install semgrep
+
+      - name: Run Semgrep Security Scan
+        run: |
+          semgrep scan -c auto --output semgrep-log.txt
+
+      - name: Upload Semgrep report
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: semgrep-report
+          path: semgrep.sarif
