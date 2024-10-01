@@ -21,5 +21,4 @@ jobs:
           SEMGREP_ENABLE_VERSION_CHECK: false
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
       - uses: actions/checkout@v4
-      - run: |
-          semgrep ci
+      - run: semgrep ci
