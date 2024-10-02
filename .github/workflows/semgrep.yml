@@ -1,39 +1,25 @@
-name: Semgrep Source Code Security Checks
+name: Semgrep
 
 on:
-  pull_request:
-    branches:
-      - main
   push:
     branches:
-      - main
       - development
+      - master
+    paths:
+      - .github/workflows/semgrep.yml
 
 jobs:
   semgrep:
-    name: Run Semgrep Security Checks
+    name: semgrep/scan
     runs-on: ubuntu-latest
 
+    env:
+      SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+
+    container:
+      image: semgrep/semgrep
+
+    if: (github.actor != 'dependabot[bot]')
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.x"
-
-      - name: Install Semgrep
-        run: |
-          pip install semgrep
-
-      - name: Run Semgrep Security Scan
-        run: |
-          semgrep scan -c auto --output semgrep-log.txt
-
-      - name: Upload Semgrep report
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: semgrep-report
-          path: semgrep.sarif
+      - uses: actions/checkout@v4
+      - run: semgrep scan --config="auto"
