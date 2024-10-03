@@ -1,13 +1,14 @@
-name: Semgrep
+name: Semgrep Security Check
 
 on:
+  # regras para o check ser disparado
   pull_request:
     branches:
       - main
   push:
     branches:
       - development
-      - master
+      - main
     paths:
       - .github/workflows/semgrep.yml
 
@@ -17,11 +18,14 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      # Token que faz a conexão com a plataforma do semgrep para fazer full scan (OBS: sem enviar código p/ nuvem)
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+      SEMGREP_ENABLE_VERSION_CHECK: false
 
     container:
       image: semgrep/semgrep
 
+    # Condição apenas para evitar problemas em caso de uso do dependabot
     if: (github.actor != 'dependabot[bot]')
     steps:
       - uses: actions/checkout@v4
