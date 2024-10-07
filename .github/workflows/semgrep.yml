@@ -12,13 +12,13 @@ on:
     paths:
       - .github/workflows/semgrep.yml
 
-permissions:
-  contents: read
-
 jobs:
   semgrep:
     name: semgrep/scan
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
 
     env:
       # Token que faz a conexão com a plataforma do semgrep para fazer full scan (OBS: sem enviar código p/ nuvem)
