@@ -19,6 +19,7 @@ jobs:
 
     permissions:
       contents: read
+      security-events: write
 
     env:
       # Token que faz a conexão com a plataforma do semgrep para fazer full scan (OBS: sem enviar código p/ nuvem)
