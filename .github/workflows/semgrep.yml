@@ -12,6 +12,9 @@ on:
     paths:
       - .github/workflows/semgrep.yml
 
+permissions:
+  contents: read
+
 jobs:
   semgrep:
     name: semgrep/scan
