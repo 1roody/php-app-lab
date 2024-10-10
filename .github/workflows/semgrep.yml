@@ -31,9 +31,9 @@ jobs:
 
       - name: Run Semgrep Full Scan on Production
         if: github.event.pull_request.base.ref == 'main'
-        run: semgrep ci . --sarif --output=semgrep.sarif
+        run: semgrep --config=p/ci --error . --sarif --output=semgrep.sarif
 
-      - name: Run Semgrep Diff Scan development
+      - name: Run Semgrep Diff Scan on Development
         if: github.event.pull_request.base.ref == 'development'
         run: semgrep ci --sarif --output=semgrep.sarif
 
