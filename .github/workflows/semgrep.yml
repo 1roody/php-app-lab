@@ -1,10 +1,10 @@
 name: Semgrep Security Check
 
 on:
-  # regras para o check ser disparado
   pull_request:
     branches:
       - main
+      - development
     paths:
       - .github/workflows/semgrep.yml
 
@@ -18,22 +18,26 @@ jobs:
       security-events: write
 
     env:
-      # Token que faz a conexão com a plataforma do semgrep para fazer full scan (OBS: sem enviar código p/ nuvem)
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
       SEMGREP_ENABLE_VERSION_CHECK: false
 
     container:
       image: semgrep/semgrep
 
-    # Condição apenas para evitar problemas em caso de uso do dependabot
     if: (github.actor != 'dependabot[bot]')
     steps:
       - uses: actions/checkout@v4
-      - run: semgrep --config=p/ci --error . # --sarif --output=semgrep.sarif
 
+      - name: Run Semgrep Full Scan on main
+        if: github.event.pull_request.base.ref == 'main'
+        run: semgrep --config=p/ci --error . --sarif --output=semgrep.sarif
 
-      # - name: Upload SARIF file for GitHub Advanced Security Dashboard
-      #   uses: github/codeql-action/upload-sarif@v3
-      #   with:
-      #     sarif_file: semgrep.sarif
-      #   if: always()
+      - name: Run Semgrep Diff Scan on other branches
+        if: github.event.pull_request.base.ref == 'development'
+        run: semgrep --config=p/ci --error --sarif --output=semgrep.sarif
+
+      - name: Upload SARIF file for GitHub Advanced Security Dashboard
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep.sarif
+        if: always()
