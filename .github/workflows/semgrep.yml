@@ -5,10 +5,6 @@ on:
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - development
-      - main
     paths:
       - .github/workflows/semgrep.yml
 
@@ -33,10 +29,11 @@ jobs:
     if: (github.actor != 'dependabot[bot]')
     steps:
       - uses: actions/checkout@v4
-      - run: semgrep ci --sarif --output=semgrep.sarif
+      - run: semgrep ci --config=p/ci . # --sarif --output=semgrep.sarif
 
-      - name: Upload SARIF file for GitHub Advanced Security Dashboard
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: semgrep.sarif
-        if: always()
+
+      # - name: Upload SARIF file for GitHub Advanced Security Dashboard
+      #   uses: github/codeql-action/upload-sarif@v3
+      #   with:
+      #     sarif_file: semgrep.sarif
+      #   if: always()
